@@ -55,3 +55,15 @@ iOS Example\
 phonecheck-flutter-example/ios
 
 Don't forget to make sure Cocoapods installed on your machine.
+
+## Meta
+
+Distributed under the MIT license. See ``LICENSE`` for more information.
+
+[https://github.com/tru-ID](https://github.com/tru-ID)
+
+[swift-image]:https://img.shields.io/badge/swift-5.0-green.svg
+[swift-url]: https://swift.org/
+[license-image]: https://img.shields.io/badge/License-MIT-blue.svg
+[license-url]: LICENSE
+
