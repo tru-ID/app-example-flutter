@@ -3,8 +3,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-//TODO: Below line is to be added when the trusdkflutter package is published
-//import 'package:trusdkflutter/trusdkflutter.dart';
+//TODO: Below line is to be added when the tru_sdk_flutter package is published
+//import 'package:tru_sdk_flutter/tru_sdk_flutter.dart';
 
 // Set up a local tunnel base url.
 final String baseURL = "https://clever-mole-63.loca.lt";
@@ -236,11 +236,11 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
       // Platform messages may fail, so we use a try/catch PlatformException.
       // We also handle the message potentially returning null.
       try {
-        // TODO: Below lines are to be added when the trusdkflutter package is published
-        // String platformVersion = await Trusdkflutter.platformVersion ?? 'Unknown platform version';
-        //Trusdkflutter sdk = Trusdkflutter();
+        // TODO: Below lines are to be added when the tru_sdk_flutter package is published
+        // String platformVersion = await TruSdkFlutter.platformVersion ?? 'Unknown platform version';
+        //TruSdkFlutter sdk = TruSdkFlutter();
 
-        // TODO: Below lines are to be added when the trusdkflutter package is published
+        // TODO: Below lines are to be added when the tru_sdk_flutter package is published
        // String? result = await sdk.check(checkDetails.url);
        // print("Check Results -> ${result}");
 
