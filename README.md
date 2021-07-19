@@ -1,6 +1,6 @@
 # Phonecheck Flutter Sample App
 
-This Flutter sample project demonstrates how to use the tru_sdk_flutter plugin and is also embedded within it. 
+This Flutter sample project demonstrates how to use the tru_sdk_flutter plugin. 
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ Before you begin, you will need:
    tru projects:create flutter-sdk-server --project-dir .
    ```
 
-   Run the development server, pointing it to the directory containing the newly created project configuration. This will also open up a     localtunnel to your development server, making it publicly accessible to the Internet so that your mobile phone can access it when only connected  to mobile data.
+   Run the development server, pointing it to the directory containing the newly created project configuration. This will also open up a localtunnel to your development server, making it publicly accessible to the Internet so that your mobile phone can access it when only connected  to mobile data.
 
    ```bash
    tru server -t --project-dir .
@@ -49,6 +49,9 @@ It may be a good idea to work on the native Android or iOS example projects in s
 
 Don't forget to make sure Cocoapods installed on your machine.
 
+## Using tru_sdk_flutter in your own projects
+
+Please note that the minimum target for iOS is iOS 13. For Android the minSDKVersion is 21 and gradle wrapper is 6.7.1
 
 ## Meta
 
