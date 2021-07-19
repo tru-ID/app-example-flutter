@@ -3,11 +3,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-//TODO: Below line is to be added when the tru_sdk_flutter package is published
-//import 'package:tru_sdk_flutter/tru_sdk_flutter.dart';
+import 'package:tru_sdk_flutter/tru_sdk_flutter.dart';
 
 // Set up a local tunnel base url.
-final String baseURL = "https://clever-mole-63.loca.lt";
+final String baseURL = "https://new-tiger-37.loca.lt";
+
 
 void main() {
   runApp(PhoneCheckApp());
@@ -221,7 +221,7 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
   Future<CheckStatus> executeFlow(String phoneNumber) async {
     print("[PhoneCheck] - Creating phone check");
     final response = await http.post(
-      Uri.parse('$baseURL/check'),
+      Uri.parse('$baseURL/phone-check'),
       headers: <String, String>{
         'content-type': 'application/json; charset=UTF-8',
       },
@@ -236,18 +236,16 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
       // Platform messages may fail, so we use a try/catch PlatformException.
       // We also handle the message potentially returning null.
       try {
-        // TODO: Below lines are to be added when the tru_sdk_flutter package is published
-        // String platformVersion = await TruSdkFlutter.platformVersion ?? 'Unknown platform version';
-        //TruSdkFlutter sdk = TruSdkFlutter();
+         String platformVersion = await TruSdkFlutter.platformVersion ?? 'Unknown platform version';
+         TruSdkFlutter sdk = TruSdkFlutter();
 
-        // TODO: Below lines are to be added when the tru_sdk_flutter package is published
-       // String? result = await sdk.check(checkDetails.url);
-       // print("Check Results -> ${result}");
+         String? result = await sdk.check(checkDetails.url);
+         print("Check Results -> ${result}");
 
       } on PlatformException {
         throw Exception('Failed execute platform request');
       }
-
+      
       return fetchPhoneCheckResult(checkDetails.id);
 
     } else {
@@ -256,7 +254,6 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
   }
 
 }
-
 
 Future<CheckStatus> fetchPhoneCheckResult(String checkID) async {
   print("[CheckStatus] - Fetching phone check status");
@@ -300,6 +297,7 @@ class CheckStatus {
     );
   }
 }
+
 
 
 
