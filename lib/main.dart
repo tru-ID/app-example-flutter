@@ -8,25 +8,19 @@ import 'package:tru_sdk_flutter/tru_sdk_flutter.dart';
 // Set up a local tunnel base url.
 final String baseURL = "https://new-tiger-37.loca.lt";
 
-
 void main() {
   runApp(PhoneCheckApp());
 }
 
 class PhoneCheckApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tru.Id Phone Check Sample',
-      theme: ThemeData(
-          primarySwatch: Colors.teal
-        //primarySwatch: Colors.blue,
-      ),
-      home: PhoneCheckHome(title: 'Tru.ID Flutter Sample App'),
+      title: 'tru.ID Phone Check Sample',
+      theme: ThemeData(),
+      home: PhoneCheckHome(title: 'tru.ID Flutter Sample App'),
     );
   }
-
 }
 
 class PhoneCheckHome extends StatefulWidget {
@@ -50,11 +44,12 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
     return MaterialApp(
       title: 'tru.ID Sample App',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('tru.ID Sample App'),
+          title: Text('tru.ID Sample Flutter App'),
         ),
         body: bodyContainer(),
       ),
@@ -84,7 +79,7 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
               validatingFormField(),
               const SizedBox(height: 24),
               verifyButton(),
-              Text((_result == null) ? "" : "Results ${_result}" )
+              Text((_result == null) ? "" : "Results ${_result}")
             ],
           ),
         ),
@@ -114,11 +109,9 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
   }
 
   Widget logo() {
-    return  Center(
+    return Center(
       child: Image.asset('assets/images/1024.png',
-          width: 175.0,
-          height: 100.0,
-          fit: BoxFit.cover),
+          width: 175.0, height: 100.0, fit: BoxFit.cover),
     );
   }
 
@@ -207,7 +200,7 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
         if (!valid) {
           return;
         }
-        if(phoneNumber != null) {
+        if (phoneNumber != null) {
           FocusScope.of(context).unfocus();
           setState(() {
             _futurePhoneCheck = executeFlow(phoneNumber!);
@@ -236,23 +229,21 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
       // Platform messages may fail, so we use a try/catch PlatformException.
       // We also handle the message potentially returning null.
       try {
-         String platformVersion = await TruSdkFlutter.platformVersion ?? 'Unknown platform version';
-         TruSdkFlutter sdk = TruSdkFlutter();
+        String platformVersion =
+            await TruSdkFlutter.platformVersion ?? 'Unknown platform version';
+        TruSdkFlutter sdk = TruSdkFlutter();
 
-         String? result = await sdk.check(checkDetails.url);
-         print("Check Results -> ${result}");
-
+        String? result = await sdk.check(checkDetails.url);
+        print("Check Results -> ${result}");
       } on PlatformException {
         throw Exception('Failed execute platform request');
       }
-      
-      return fetchPhoneCheckResult(checkDetails.id);
 
+      return fetchPhoneCheckResult(checkDetails.id);
     } else {
       throw Exception('Failed to create phone check');
     }
   }
-
 }
 
 Future<CheckStatus> fetchPhoneCheckResult(String checkID) async {
@@ -297,7 +288,3 @@ class CheckStatus {
     );
   }
 }
-
-
-
-
