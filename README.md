@@ -8,13 +8,15 @@ Before you begin, you will need:
 
 - For iOS: Xcode 12+ 
 - For Android: Android Studio version 3.0 or later
-- [Flutter](https://flutter.dev/docs/get-started/install) installed
+- For Android Studio [Flutter and Dart Plugins](https://flutter.dev/docs/get-started/install) installed.
+- For VS Code [Flutter and Dart Plugins](https://flutter.dev/docs/get-started/editor?tab=vscode) installed.
 - A mobile phone with mobile data connection.
 
 ## How to run the sample app
 
-- Open the phonecheck-flutter-example folder with Android Studio
-- Android Studio will notify you of updates to your package dependencies. Click **Pub get** in the action ribbon at the top of `pubspec.yaml`.
+- Open the phonecheck-flutter-example folder with Android Studio or VS Code.
+- Android Studio/IntelliJ will notify you of updates to your package dependencies. Click **Pub get** in the action ribbon at the top of `pubspec.yaml`. 
+- VS Code: Click **Get Packages** located in right side of the action ribbon at the top of `pubspec.yaml`
 - This sample app uses the **tru.ID** dev server. To get setup:
 
    Create a [tru.ID account](https://developer.tru.id/signup).
@@ -43,7 +45,7 @@ Before you begin, you will need:
 
    In `phonecheck_flutter_example/lib/main.dart` , replace `base_url` with your development server URL.
 
-- Run -> Run 
+- Android Studio Run -> Run 
 
 It may be a good idea to work on the native Android or iOS example projects in separate windows/IDEs. Android Studio will provide a banner suggesting this.
 
