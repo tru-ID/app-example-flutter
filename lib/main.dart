@@ -249,7 +249,7 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
 Future<CheckStatus> fetchPhoneCheckResult(String checkID) async {
   print("[CheckStatus] - Fetching phone check status");
   final response = await http.get(
-    Uri.parse('$baseURL/check_status?check_id=${checkID}'),
+    Uri.parse('$baseURL/phone-check?check_id=${checkID}'),
   );
 
   print("[CheckStatus] - Received response");
