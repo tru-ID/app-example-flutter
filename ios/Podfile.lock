@@ -1,7 +1,7 @@
 PODS:
   - Flutter (1.0.0)
   - tru-sdk-ios (0.2.4)
-  - tru_sdk_flutter (0.0.1):
+  - tru_sdk_flutter (0.0.5):
     - Flutter
     - tru-sdk-ios (= 0.2.4)
 
