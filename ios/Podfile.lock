@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - tru-sdk-ios (0.2.4)
-  - tru_sdk_flutter (0.0.5):
+  - tru-sdk-ios (0.3.0)
+  - tru_sdk_flutter (0.1.0):
     - Flutter
-    - tru-sdk-ios (= 0.2.4)
+    - tru-sdk-ios (= 0.3.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/tru_sdk_flutter/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  tru-sdk-ios: e6ed377ab975e707548219bfd96439b09cbc9708
-  tru_sdk_flutter: fe3a71f125bb5b3788aff6280d995184c32c695f
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  tru-sdk-ios: d073dee7baab200aa4d282cf623eade8f275e3eb
+  tru_sdk_flutter: 27fff44913a9903adbc2fb76aa0b81f29f1e6b61
 
 PODFILE CHECKSUM: 0dbd5a87e0ace00c9610d2037ac22083a01f861d
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

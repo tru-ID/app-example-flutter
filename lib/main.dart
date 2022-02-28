@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:tru_sdk_flutter/tru_sdk_flutter.dart';
 
 // Set up a local tunnel base url.
-final String baseURL = "https://new-tiger-37.loca.lt";
+final String baseURL = "<YOUR_LOCAL_TUNNEL_URL>";
 
 void main() {
   runApp(PhoneCheckApp());
@@ -233,7 +233,7 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
             await TruSdkFlutter.platformVersion ?? 'Unknown platform version';
         TruSdkFlutter sdk = TruSdkFlutter();
 
-        String? result = await sdk.check(checkDetails.url);
+        Map<Object?, Object?>? result = await sdk.checkUrlWithResponseBody(checkDetails.url);
         print("Check Results -> ${result}");
       } on PlatformException {
         throw Exception('Failed execute platform request');
