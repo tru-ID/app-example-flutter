@@ -8,6 +8,8 @@ import 'package:tru_sdk_flutter/tru_sdk_flutter.dart';
 // Set up a local tunnel base url.
 final String baseURL = "<YOUR_LOCAL_TUNNEL_URL>";
 
+TruSdkFlutter sdk = TruSdkFlutter();
+
 void main() {
   runApp(PhoneCheckApp());
 }
@@ -95,7 +97,7 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
           if (snapshot.hasData) {
             _result = 'Match status: ${snapshot.data!.match}';
           } else if (snapshot.hasError) {
-            _result = '$snapshot.error';
+            _result = snapshot.error.toString();
           }
           return bodyForm();
         } else if (snapshot.connectionState == ConnectionState.active ||
@@ -200,6 +202,7 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
         if (!valid) {
           return;
         }
+
         if (phoneNumber != null) {
           FocusScope.of(context).unfocus();
           setState(() {
@@ -210,9 +213,49 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
     );
   }
 
+  Future<void> isReachable() async {
+    print("[ReachabilityCheck] - Checking if MNO is reachable.");
+    String? reachabilityInfo = await sdk.isReachable();
+
+    print(reachabilityInfo);
+    if (reachabilityInfo == null) {
+      throw new Exception(
+          "MNO is not reachable from Device. Please use fallback.");
+    }
+
+    print("Reachability Results -> ${reachabilityInfo}");
+    ReachabilityDetails reachabilityDetails =
+        ReachabilityDetails.fromJson(jsonDecode(reachabilityInfo));
+
+    if (reachabilityDetails.error?.status == 400) {
+      throw new Exception("Mobile Operator not supported.");
+    }
+    bool isPhoneCheckSupported = true;
+
+    if (reachabilityDetails.error?.status != 412) {
+      isPhoneCheckSupported = false;
+
+      for (var products in reachabilityDetails.products!) {
+        if (products.productName == "Phone Check") {
+          isPhoneCheckSupported = true;
+        }
+      }
+    } else {
+      isPhoneCheckSupported = true;
+    }
+
+    if (isPhoneCheckSupported == false) {
+      throw new Exception(
+          'MNO is not reachable from Device. Please use fallback.');
+    }
+  }
+
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<CheckStatus> executeFlow(String phoneNumber) async {
+    await isReachable();
+
     print("[PhoneCheck] - Creating phone check");
+
     final response = await http.post(
       Uri.parse('$baseURL/phone-check'),
       headers: <String, String>{
@@ -229,11 +272,8 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
       // Platform messages may fail, so we use a try/catch PlatformException.
       // We also handle the message potentially returning null.
       try {
-        String platformVersion =
-            await TruSdkFlutter.platformVersion ?? 'Unknown platform version';
-        TruSdkFlutter sdk = TruSdkFlutter();
-
-        Map<Object?, Object?>? result = await sdk.checkUrlWithResponseBody(checkDetails.url);
+        Map<Object?, Object?>? result =
+            await sdk.checkUrlWithResponseBody(checkDetails.url);
         print("Check Results -> ${result}");
       } on PlatformException {
         throw Exception('Failed execute platform request');
