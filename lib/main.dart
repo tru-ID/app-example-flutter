@@ -236,7 +236,7 @@ class _PhoneCheckAppState extends State<PhoneCheckHome> {
       isPhoneCheckSupported = false;
 
       for (var products in reachabilityDetails.products!) {
-        if (products.productName == "Phone Check") {
+        if (products.productId == "PCK") {
           isPhoneCheckSupported = true;
         }
       }
